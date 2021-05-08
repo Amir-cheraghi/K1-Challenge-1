@@ -20,6 +20,22 @@ module.exports = new class taskController{
         }
     }
 
+    async showTaskById(req,res,next){
+        try{
+        const data = await Task.findById(req.params.id)
+        res.json({
+            status : "Success",
+            data 
+        })
+    }catch(err){
+        console.log(err)
+        res.json({
+            status : "Error",
+            message : "Some Error While Showing This Task Has Been Apeared"
+        })
+    }
+    }
+
 
 
     async createTask(req,res,next){

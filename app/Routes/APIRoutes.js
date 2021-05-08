@@ -8,7 +8,7 @@ router.route('/api/tasks')
 .post(taskController.createTask)
 
 router.route('/api/tasks/:id')
-.get(taskController.showAllTask)
+.get(taskController.showTaskById)
 .put(taskController.editTask)
 .delete(taskController.deleteTask)
 
