@@ -44,6 +44,25 @@ module.exports = new class taskController{
         }
     }
 
+
+    async editTask(req,res,next){
+        try{
+        await Task.findByIdAndUpdate(req.params.id,req.body)
+        const updatedTask =await Task.findById(req.params.id)
+        res.json({
+            status : "Success",
+            message : "Task Has Been Successfully Updated",
+            data : updatedTask
+        })
+    } catch(err){
+        console.log(err)
+        res.json({
+            status : "Error",
+            message : "While Updateing Some Error Has Been Apeared !!!"
+        })
+    }
+    }
+
    
 
 }
