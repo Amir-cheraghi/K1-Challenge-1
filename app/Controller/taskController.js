@@ -63,6 +63,23 @@ module.exports = new class taskController{
     }
     }
 
+    async deleteTask(req,res,next){
+        try{
+        const deletedTask = await Task.findByIdAndDelete(req.params.id)
+        res.json({
+            status : "Success",
+            message : "The Following Task Successfully Removed",
+            data : deletedTask
+        })
+    } catch(err){
+        console.log(err)
+        res.json({
+            status : "Error",
+            message : "While Removing Task Some Error Has Been Apeared"
+        })
+    }
+    }
+
    
 
 }

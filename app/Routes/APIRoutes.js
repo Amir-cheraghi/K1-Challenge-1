@@ -9,9 +9,8 @@ router.route('/api/tasks')
 
 router.route('/api/tasks/:id')
 .get(taskController.showAllTask)
-
 .put(taskController.editTask)
-// .delete()
+.delete(taskController.deleteTask)
 
 
 
