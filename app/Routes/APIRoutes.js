@@ -4,14 +4,14 @@ const router = express.Router()
 
 
 router.route('/api/tasks')
-.get(taskController.showAllTask())
-.post()
+.get(taskController.showAllTask)
+.post(taskController.createTask)
 
 router.route('/api/tasks/:id')
-.get(taskController.showAllTask())
+.get(taskController.showAllTask)
 
-.put()
-.delete()
+// .put()
+// .delete()
 
 
 

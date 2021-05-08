@@ -1,9 +1,9 @@
 const mongoose = require('mongoose')
 
 const taskSchema = new mongoose.Schema({
-    name : {type : string , required : true},
-    type : {type : string , enum : ['TODO' , 'DOING' , 'DONE'] , required : true},
-    description : {type : string}
+    name : {type : String , required : true},
+    type : {type : String , enum : ['TODO' , 'DOING' , 'DONE'] , required : true},
+    description : {type : String}
 
 })
 

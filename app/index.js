@@ -4,22 +4,27 @@ const mongoose = require('mongoose')
 const session = require('express-session')
 const cookieParser = require('cookie-parser')
 const mongoStore = require('connect-mongo')
-const dotenv = require('dotenv').config({path:process.cwd+'/config.env'})
+const dotenv = require('dotenv').config({path:process.cwd()+'/config.env'})
 
 const routes = require('./Routes/APIRoutes')
 class application {
     constructor(){
-        setConfig()
-        setDB()
-        setRoute()
-        setExpress()
+        this.setConfig()
+        this.setDB()
+        this.setRoute()
+        this.setExpress()
     }
 
-    setDB(){
-        mongoose.connect('mongodb://localhost:27017/challenge#1', {useNewUrlParser: true, useUnifiedTopology: true});
+    async setDB(){
+        await mongoose.connect(process.env.MONGODB_URL, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+            useFindAndModify: false,
+            useCreateIndex: true});
+            console.log('Connected To DB')
     }
 
-    setConfig(){
+     setConfig(){
         app.use(express.json())
         app.use(express.urlencoded({extended:true}))
         app.use(cookieParser(process.env.COOKIE_SECRET))
@@ -28,7 +33,7 @@ class application {
             resave : true,
             saveUninitialized : true,
             cookie : {httpOnly:true , maxAge:24*60*60*1000},
-            store : mongoStore.create({mongoUrl:mongoose.connection})
+            store :  mongoStore.create({mongoUrl:process.env.MONGODB_URL})
         }))
 
     }   
