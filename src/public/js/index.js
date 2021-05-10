@@ -1,17 +1,59 @@
 
-async function deleteTask(button){
-const id = button.attributes["data-url"].nodeValue
+async function deleteTask(e){
+const id = e.attributes["data-url"].nodeValue
 
 const ajax = new XMLHttpRequest()
 ajax.open('DELETE',`http://${location.hostname}:3000/api/tasks/${id}`,true)
 ajax.onreadystatechange = function (){
     if(this.readyState == 4 && this.status == 200){
-        console.log('deleted')
         location.reload()
     }
 }
 ajax.send()
 }
+
+
+
+async function editTask(e){
+const id = e.attributes["data-url"].nodeValue
+const data = {
+    name : document.getElementById(`name-${id}`).value,
+    description : document.getElementById(`description-${id}`).value,
+    type : document.getElementById(`type-${id}`).value,
+}
+
+$.ajax({
+    type: "PUT",
+    url:`http://${location.hostname}:3000/api/tasks/${id}` ,
+    async : true,
+    data: JSON.stringify(data),
+    contentType: "application/json; charset=utf-8",
+    success : location.reload()
+
+    
+ });
+}
+
+
+
+async function createTask(type){
+    const data = {
+        name : document.getElementById(`${type}-name`).value,
+        description : document.getElementById(`${type}-description`).value,
+        type : document.getElementById(`${type}-type`).value,
+    }
+    
+    $.ajax({
+        type: "POST",
+        url:`http://${location.hostname}:3000/api/tasks` ,
+        async : true,
+        data: JSON.stringify(data),
+        contentType: "application/json; charset=utf-8",
+        success : location.reload()        
+     });
+    }
+
+
 
 
 
