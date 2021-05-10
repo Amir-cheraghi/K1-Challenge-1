@@ -40,8 +40,7 @@ module.exports = new class taskController{
 
     async createTask(req,res,next){
         try {
-            console.log(req.body)
-
+            
             const task = await Task.create({
                 name : req.body.name,
                 type : req.body.type,
