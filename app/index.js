@@ -6,7 +6,9 @@ const cookieParser = require('cookie-parser')
 const mongoStore = require('connect-mongo')
 const dotenv = require('dotenv').config({path:process.cwd()+'/config.env'})
 
-const routes = require('./Routes/APIRoutes')
+const APIRoutes = require('./Routes/APIRoutes')
+const frontRoutes = require('./Routes/frontRoutes')
+
 class application {
     constructor(){
         this.setConfig()
@@ -35,11 +37,16 @@ class application {
             cookie : {httpOnly:true , maxAge:24*60*60*1000},
             store :  mongoStore.create({mongoUrl:process.env.MONGODB_URL})
         }))
+        app.set('views',process.cwd()+'/src/views')
+        app.set('view engine','ejs')
+        app.use(express.static(process.cwd()+'/src/public'))
 
     }   
 
     setRoute(){
-        app.use(routes)
+        app.use(APIRoutes)
+        app.use(frontRoutes)
+
     }
 
     setExpress(){
