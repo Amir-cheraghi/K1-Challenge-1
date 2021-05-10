@@ -2,14 +2,15 @@
 async function deleteTask(e){
 const id = e.attributes["data-url"].nodeValue
 
-const ajax = new XMLHttpRequest()
-ajax.open('DELETE',`http://${location.hostname}:3000/api/tasks/${id}`,true)
-ajax.onreadystatechange = function (){
-    if(this.readyState == 4 && this.status == 200){
-        location.reload()
-    }
-}
-ajax.send()
+$.ajax({
+    url : `http://${location.hostname}:3000/api/tasks/${id}`,
+    type : 'DELETE',
+    async : true,
+    success : location.reload()
+
+})
+
+    
 }
 
 
