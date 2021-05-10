@@ -160,7 +160,7 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-danger">Delete Task</button>
+                                                <button type="button" class="btn btn-danger"  onclick="deleteTask(this)" data-url="<%-el._id%>">Delete Task</button>
                                             </div>
                                         </div>
                                     </div>
@@ -314,7 +314,7 @@
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                    <button type="button" class="btn btn-danger">Delete Task</button>
+                                                    <button type="button" class="btn btn-danger"  onclick="deleteTask(this)" data-url="<%-el._id%>">Delete Task</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -470,7 +470,7 @@
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                    <button type="button" class="btn btn-danger">Delete Task</button>
+                                                    <button type="button" class="btn btn-danger" data-url="<%-el._id%>" onclick="deleteTask(this)">Delete Task</button>
                                                 </div>
                                             </div>
                                         </div>
